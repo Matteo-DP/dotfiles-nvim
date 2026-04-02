@@ -1,0 +1,33 @@
+-- Neo-tree is a Neovim plugin to browse the file system
+-- https://github.com/nvim-neo-tree/neo-tree.nvim
+
+---@module 'lazy'
+---@type LazySpec
+return {
+  'nvim-neo-tree/neo-tree.nvim',
+  version = '*',
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+    'MunifTanjim/nui.nvim',
+  },
+  lazy = false,
+  keys = {
+    { '<leader>tg', ':Neotree toggle<CR>', desc = 'NeoTree toggle', silent = true },
+    { '<leader>e', ':Neotree reveal<CR>', desc = 'NeoTree reveal (focus file)', silent = true },
+  },
+  ---@module 'neo-tree'
+  ---@type neotree.Config
+  opts = {
+    filesystem = {
+      filtered_items = {
+        visible = true,
+      },
+      window = {
+        mappings = {
+          ['\\'] = 'close_window',
+        },
+      },
+    },
+  },
+}
